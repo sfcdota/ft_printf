@@ -6,13 +6,13 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:01 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 21:23:11 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/29 21:28:46 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	print_c(t_format *format)
+int	print_f(t_format *format)
 {
 	return (0);
 
