@@ -6,15 +6,30 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 17:41:32 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 20:36:13 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/29 21:27:39 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		print_arg(t_format format)
+int		print_arg(t_format *format)
 {
+	int len;
 
+	len = 0;
+	len = format->type == 'c' ? print_c(format) : len;
+	len = format->type == 's' ? print_s(format) : len;
+	len = format->type == 'p' ? print_p(format) : len;
+	len = format->type == 'd' ? print_d(format) : len;
+	len = format->type == 'i' ? print_d(format) : len;
+	len = format->type == 'u' ? print_d(format) : len;
+	len = format->type == 'x' ? print_x(format) : len;
+	len = format->type == 'X' ? print_x(format) : len;
+	len = format->type == 'n' ? print_n(format) : len;
+	len = format->type == 'f' ? print_f(format) : len;
+	len = format->type == 'g' ? print_g(format) : len;
+	len = format->type == 'e' ? print_e(format) : len;
+	return (len);
 }
 
 int		handle_type(char **line, t_format *format)
@@ -33,14 +48,15 @@ int		handle_type(char **line, t_format *format)
 	format->type = **line ==  'f' ? 'f' : format->type;
 	format->type = **line ==  'g' ? 'g' : format->type;
 	format->type = **line ==  'e' ? 'e' : format->type;
-	return ()
+	*line++;
+	return (print_arg(format));
 }
 
 int		handle_length(char **line, t_format *format)
 {
-	if (**line == "l")
+	if (**line == 'l')
 	{
-		if (++(*line) == "l")
+		if (++(*line) == 'l')
 			format->length = 'a';
 		else
 		{
@@ -50,9 +66,9 @@ int		handle_length(char **line, t_format *format)
 	}
 	else
 	{
-		if (**line == "h")
+		if (**line == 'h')
 		{
-			if (++(*line) == "h")
+			if (++(*line) == 'h')
 				format->length = 'b';
 			else
 			{
@@ -115,7 +131,7 @@ int		handle(char *line, t_format *format)
 	int temp;
 
 	len = 0;
-	while (*line)
+	while (*line && len >= 0)
 	{
 		if (*line != '%')
 		{
@@ -134,7 +150,7 @@ int		handle(char *line, t_format *format)
 			{
 				if ((temp = handle_flags(&line, discard_options(format)) == -1))
 					return (-1);
-				len += temp;
+				len = temp != -1 ? len + temp : temp;
 			}
 		}
 	}

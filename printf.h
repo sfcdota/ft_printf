@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 20:15:31 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/29 21:09:55 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_format
 	int			flag_hash;
 	int			width;
 	int			precision;
-	int			length;
+	char		length;
 	char		type;
 
 }				t_format;
