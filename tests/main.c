@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:58:59 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 21:23:21 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 00:55:06 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 
 int main()
 {
-	printf("%-5d\n", 228);
+	printf("%- +15x\n", 22832213);
 	return (0);
 }
+
+//			%c
+// flags: only - allowed
+// precision not allowed
+//length: only l allowed
+
+
+
+//			%diu
+// '0' игнорится если есть '-'
+// ' ' игнорится если есть '+'
+
+
+//			%xX
+// flags: ' ' and '+' ignored
+//

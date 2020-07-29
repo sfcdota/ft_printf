@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 20:15:31 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/29 23:46:18 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ t_format	*discard_options(t_format *format)
 }
 
 int			i_len(long long int i)
+{
+	int len;
+
+	len = 1;
+	while (i > 10)
+	{
+		i /= 10;
+		len++;
+	}
+	return (len);
+}
+
+int			ui_len(unsigned long long int i)
 {
 	int len;
 

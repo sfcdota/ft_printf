@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 21:09:55 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/29 23:47:49 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int				zero(char c, t_format *format);
 int				hash(char c, t_format *format);
 int				space(char c, t_format *format);
 int				i_len(long long int i);
+int				ui_len(unsigned long long int i);
 #endif

@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:43:47 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 21:19:23 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 00:35:07 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@ precision not allowed
 length only l allowed
 */
 
-void	print_spaces(int width)
+void	fill_c(int len)
 {
-	if (width)
-		while (--width)
+	if (len)
+		while (--len)
 			ft_putchar_fd(' ', 1);
 }
 
 int	print_c(t_format *format)
 {
+	//or ignore ??
 	if (format->flag_hash || format->flag_plus || format->flag_space ||
 	format->flag_zero || format->precision || format->length == 'a' ||
 	format->length == 'b' || format->length == 'h')
 		return (-1);
+	// ??????????????????????
 	if (format->flag_minus)
 	{
 		ft_putchar_fd(va_arg(format->list, char), 1);
