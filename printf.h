@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/29 23:47:49 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 12:04:20 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ typedef struct	s_format
 
 }				t_format;
 
+t_format		*discard_options(t_format *format);
 char			*ft_itoa_16(unsigned long long n, int lowercase);
 int				ft_printf(const char *line, ...);
 int				handle(char *line, t_format *format);
-t_format		*discard_options(t_format *format);
 int				minus(char c, t_format *format);
 int				plus(char c, t_format *format);
 int				zero(char c, t_format *format);
@@ -46,4 +46,20 @@ int				hash(char c, t_format *format);
 int				space(char c, t_format *format);
 int				i_len(long long int i);
 int				ui_len(unsigned long long int i);
+int				i16_len(long long int i);
+void			fill_c(int len);
+int				print_c(t_format *format);
+int				max(int a, int b, int c);
+void			ft_putnbrlli_fd(long long int n, int fd);
+void			ft_putnbrull_fd(unsigned long long int n, int fd);
+int				adjust_di(long long int n, t_format *format);
+int				adjust_u(unsigned long long int n, t_format *format);
+int				print_d(t_format *format);
+int				handle(char *line, t_format *format);
+int				handle_flags(char **line, t_format *format);
+int				handle_width(char **line, t_format *format);
+int				handle_precision(char **line, t_format *format);
+int				handle_length(char **line, t_format *format);
+int				handle_type(char **line, t_format *format);
+int				print_arg(t_format *format);
 #endif

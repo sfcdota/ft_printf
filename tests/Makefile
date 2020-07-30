@@ -6,7 +6,7 @@
 #    By: cbach <cbach@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/10 13:44:31 by cbach             #+#    #+#              #
-#    Updated: 2020/07/29 21:01:10 by cbach            ###   ########.fr        #
+#    Updated: 2020/07/30 12:06:27 by cbach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ clear:
 	@ -rm -f
 	@ $(MAKE) -C ../libft fclean
 main:
-	@ gcc $(FLAGS) main.c -o f
+	@ gcc $(FLAGS) main.c ../print_c.c ../print_d.c ../utils.c ../printf.c
+	../flags.c ../handle.c -o f
 	@ ./f | cat -e
 	@ -rm -f

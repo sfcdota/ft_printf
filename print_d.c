@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:23 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 00:49:02 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 12:00:35 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		adjust_di(long long int n, t_format *format)
 	prepender = '\0';
 	format->flag_zero = format->flag_minus ? 0 : format->flag_zero;
 	if (format->flag_space)
-		prepender = n >= 0 ? ' ' : '-'
+		prepender = n >= 0 ? ' ' : '-';
 	if (format->flag_plus)
 		prepender = n >= 0 ? '+' : '-';
 	format->flag_space = format->flag_plus ? 0 : format->flag_space;
@@ -74,20 +74,44 @@ int		adjust_di(long long int n, t_format *format)
 		ft_putchar_fd(prepender, 1);
 	if (format->flag_minus)
 	{
-		fill_diu(max(format->precision, format->width, n) - i_len(n));
-		ft_putnbrlli_fd(n);
+		fill_diu(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
+		ft_putnbrlli_fd(n, 1);
 	}
 	else
 	{
-		ft_putnbrlli_fd(n);
-		fill_diu(max(format->precision, format->width, n) - i_len(n));
+		ft_putnbrlli_fd(n, 1);
+		fill_diu(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
 	}
-	return (fill_diu(max(format->precision, format->width, n) - i_len(n)) + prepender ? 1 : 0);
+	return (max(format->precision, format->width, i_len(n)) - i_len(n) + prepender ? 1 : 0);
 }
 
-int		adjust_u(unsigned long long int n, t_format *t_format)
+int		adjust_u(unsigned long long int n, t_format *format)
 {
+	char	filler;
+	char	prepender;
+	int		len;
 
+	prepender = '\0';
+	format->flag_zero = format->flag_minus ? 0 : format->flag_zero;
+	if (format->flag_space)
+		prepender = n >= 0 ? ' ' : '-';
+	if (format->flag_plus)
+		prepender = n >= 0 ? '+' : '-';
+	format->flag_space = format->flag_plus ? 0 : format->flag_space;
+	filler = format->flag_zero ? '0' : ' ';
+	if (prepender)
+		ft_putchar_fd(prepender, 1);
+	if (format->flag_minus)
+	{
+		fill_diu(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
+		ft_putnbrlli_fd(n, 1);
+	}
+	else
+	{
+		ft_putnbrlli_fd(n, 1);
+		fill_diu(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
+	}
+	return (max(format->precision, format->width, i_len(n)) - i_len(n) + prepender ? 1 : 0);
 }
 
 int		print_d(t_format *format)
@@ -96,24 +120,26 @@ int		print_d(t_format *format)
 	unsigned long long int outu;
 	int				len;
 
-	if (format->flag_hash)
-		return (-1);
+	if (format->width == -1)
+		format->width = va_arg(format->list, int);
+	if (format->precision == -1)
+		format->precision = va_arg(format->list, int);
 	out = 0;
-	outl = 0;
+	outu = 0;
 	if (format->type == 'u')
 	{
-		outu = format->length == 'l' ? va_arg(format->list, unsigned long int);
-		outu = format->length == 'll' ? va_arg(format->list, unsigned long long int);
-		outu = format->length == 'h' ? va_arg(format->list, unsigned short int);
-		outu = format->length == 'hh' ? va_arg(format->list, unsigned char);
+		outu = format->length == 'l' ? va_arg(format->list, unsigned long int) : outu;
+		outu = format->length == 'll' ? va_arg(format->list, unsigned long long int) : outu;
+		outu = format->length == 'h' ? va_arg(format->list, unsigned short int) : outu;
+		outu = format->length == 'hh' ? va_arg(format->list, unsigned char) : outu;
 		len = ui_len(outu);
 	}
 	if (format->type == 'd' || format->type == 'i')
 	{
-		out = format->length == 'l' ? va_arg(format->list, long int);
-		out = format->length == 'll' ? va_arg(format->list, long long int);
-		out = format->length == 'h' ? va_arg(format->list, short int);
-		out = format->length == 'hh' ? va_arg(format->list, signed char);
+		out = format->length == 'l' ? va_arg(format->list, long int) : out;
+		out = format->length == 'll' ? va_arg(format->list, long long int) : out;
+		out = format->length == 'h' ? va_arg(format->list, short int) : out;
+		out = format->length == 'hh' ? va_arg(format->list, signed char) : out;
 		len = i_len(out);
 	}
 	return (len);
