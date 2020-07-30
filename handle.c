@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 17:41:32 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 14:35:13 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 16:13:06 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ int		print_arg(t_format *format)
 
 	len = 0;
 	len = format->type == 'c' ? print_c(format) : len;
-	// len = format->type == 's' ? print_s(format) : len;
-	// len = format->type == 'p' ? print_p(format) : len;
-	len = format->type == 'd' ? print_d(format) : len;
-	len = format->type == 'i' ? print_d(format) : len;
-	len = format->type == 'u' ? print_d(format) : len;
-	// len = format->type == 'x' ? print_x(format) : len;
-	// len = format->type == 'X' ? print_x(format) : len;
+	len = format->type == 's' ? print_spxX(format) : len;
+	len = format->type == 'p' ? print_spxX(format) : len;
+	len = format->type == 'd' ? print_diu(format) : len;
+	len = format->type == 'i' ? print_diu(format) : len;
+	len = format->type == 'u' ? print_diu(format) : len;
+	len = format->type == 'x' ? print_spxX(format) : len;
+	len = format->type == 'X' ? print_spxX(format) : len;
+	len = format->type == '%' ? print_c(format) : len;
 
 	//printf("len after printarg =%d\n", len);
 	return (len);
@@ -42,6 +43,7 @@ int		handle_type(char **line, t_format *format)
 	format->type = **line ==  'u' ? 'u' : format->type;
 	format->type = **line ==  'x' ? 'x' : format->type;
 	format->type = **line ==  'X' ? 'X' : format->type;
+	format->type = **line ==  '%' ? '%' : format->type;
 	*line = *line + sizeof(char);
 	//printf("\nstep after handle_type: line = %s\t line char = %c\t format->type = %c\n", *line, **line, format->type);
 	return (print_arg(format));

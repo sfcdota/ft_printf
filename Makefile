@@ -6,18 +6,33 @@
 #    By: cbach <cbach@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/23 23:22:49 by cbach             #+#    #+#              #
-#    Updated: 2020/07/29 15:46:51 by cbach            ###   ########.fr        #
+#    Updated: 2020/07/30 16:39:59 by cbach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libftprintf.a
-HEAD =	libftprintf.h
+HEAD =	printf.h
 FLAGS = -Wall -Wextra -Werror
 
 SRC =						\
+print_c.c					\
+print_diu.c					\
+print_spxX.c				\
+flags.c						\
+handle.c					\
+utils.c						\
+printf.c					\
+ft_atoi.c					\
+ft_isdigit.c				\
+ft_memmove.c				\
+ft_putchar_fd.c				\
+ft_putnbr_fd.c				\
+ft_putstr_fd.c				\
+ft_strchr.c					\
+ft_strdup.c					\
+ft_strlen.c					\
 
 BONUS =						\
-
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 OBJ_BONUS = $(patsubst %.c, %.o, $(BONUS))
@@ -28,11 +43,9 @@ else
 OBJ_FILES = $(OBJ)
 endif
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re so
 
 all: $(NAME)
-	$(MAKE) -C ./libft all
-	$(MAKE) -C ./libft bonus
 	rm -f .depend
 
 $(NAME): $(OBJ_FILES)
@@ -52,11 +65,15 @@ bonus:
 
 clean:
 	rm -f $(OBJ) $(OBJ_BONUS) .depend
-	$(MAKE) -C ./libft/ clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C ./libft/ fclean
-
+	rm -f $(NAME_SO)
 
 re: fclean all
+
+so: $(NAME_SO)
+
+$(NAME_SO):
+	gcc -c -fPIC *.c
+	gcc -shared -o libft.so *.o

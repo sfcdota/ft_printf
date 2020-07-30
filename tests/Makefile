@@ -6,7 +6,7 @@
 #    By: cbach <cbach@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/10 13:44:31 by cbach             #+#    #+#              #
-#    Updated: 2020/07/30 13:18:25 by cbach            ###   ########.fr        #
+#    Updated: 2020/07/30 16:38:33 by cbach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ clear:
 	@ $(MAKE) -C ../libft fclean
 main:
 	@ -rm -f
-	@ gcc $(FLAGS) main.c ../print_c.c ../print_d.c ../utils.c ../printf.c ../flags.c ../handle.c -L../libft/ -lft -o f
+	@ gcc $(FLAGS) main.c ../*.c -o f
 	@ ./f | cat -e
 	@ -rm -f
+
+#	ДЛЯ ПОДРУБКИ ЛИБЫ, НАДО В GCC В САМОМ КОНЦЕ (ПЕРЕД -о ) НАПИСАТЬ -L../libft -lft
