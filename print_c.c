@@ -6,28 +6,34 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:43:47 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 16:19:50 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 00:54:57 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	print_c(t_format *format)
+int	print_c(t_f *f)
 {
 	char c;
 
-	if (format->width == -1)
-		format->width = va_arg(format->list, int);
-	c = format->type == '%' ? '%' : (char)va_arg(format->list, unsigned int);
-	if (format->flag_minus)
+	if (f->type == '%')
+	{
+		ft_putchar_fd('%', 1);
+		return (1);
+	}
+	if (f->width == -1)
+		f->width = va_arg(f->list, int);
+	c = (char)va_arg(f->list, unsigned int);
+
+	if (f->minus)
 	{
 		ft_putchar_fd(c, 1);
-		fill(format->width ? format->width : 0, ' ');
+		fill(f->width ? f->width - 1 : 0, ' ');
 	}
 	else
 	{
-		fill(format->width ? format->width : 0, ' ');
+		fill(f->width ? f->width - 1: 0, ' ');
 		ft_putchar_fd(c, 1);
 	}
-	return (format->width ? format->width : 1);
+	return (f->width ? f->width : 1);
 }

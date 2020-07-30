@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:23 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 16:20:45 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 01:48:22 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ int		max(int a, int b, int c)
 		return (c);
 	}
 	if (b > c)
+		return (b);
+	return (c);
+}
+
+int		min(int a, int b, int c)
+{
+	if (a < b)
+	{
+		if (a < c)
+			return (a);
+		return (c);
+	}
+	if (b < c)
 		return (b);
 	return (c);
 }
@@ -49,38 +62,46 @@ void	ft_putnbrull_fd(unsigned long long int n, int fd)
 	ft_putchar_fd(n % 10 + 48, fd);
 }
 
-int		adjust_di(long long int n, t_format *format)
+void	put_triplet_diu(char *s, int len, char filler, t_f *f)
+{
+
+}
+
+int		adjust_di(long long int n, t_f *f)
 {
 	char	filler;
-	char	prepender;
+	int		len;
 
-	prepender = '\0';
-	format->flag_zero = format->flag_minus ? 0 : format->flag_zero;
-	filler = format->flag_zero ? '0' : ' ';
-	if (prepender)
-		ft_putchar_fd(prepender, 1);
-	if (format->flag_minus)
+	f->zero = f->minus || (f->width && f->prec) ? 0 : f->zero;
+	filler = f->zero ? '0' : ' ';
+
+	len = n < 0 && f->zero && !f->width ? -1 : 0;
+	if (n < 0 && (f->zero || f->prec) && f->width < f->prec + i_len(n))
 	{
-		fill(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
+		ft_putchar_fd('-', 1);
+		n = -n;
+		f->width--;
+	}
+	len += f->zero ? ui_len(n) : i_len(n);
+	if (f->minus)
+	{
+		fill(f->prec - len, '0');
 		ft_putnbrlli_fd(n, 1);
+		fill(f->width - max(len, f->prec, 0), filler);
 	}
 	else
 	{
+		fill(f->width - max(len, f->prec, 0), filler);
+		fill(f->prec - len, '0');
 		ft_putnbrlli_fd(n, 1);
-		fill(max(format->precision, format->width, i_len(n)) - i_len(n), filler);
 	}
-	return (max(format->precision, format->width, i_len(n)) + (prepender ? 1 : 0));
+	return (max(f->prec, f->width, len));
 }
 
-int		print_diu(t_format *format)
+int		print_diu(t_f *f)
 {
 	long long int	out;
 
-	if (format->width == -1)
-		format->width = va_arg(format->list, int);
-	if (format->precision == -1)
-		format->precision = va_arg(format->list, int);
-	out = format->type == 'u' ? va_arg(format->list, unsigned int) : va_arg(format->list, int);
-
-	return (adjust_di(out, format));
+	out = f->type == 'u' ? (long long int)va_arg(f->list, unsigned int) : (long long int)va_arg(f->list, int);
+	return (adjust_di(out, f));
 }

@@ -6,11 +6,11 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 18:55:20 by cbach             #+#    #+#             */
-/*   Updated: 2020/05/30 20:09:07 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 16:43:26 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 char	*ft_strdup(const char *s)
 {

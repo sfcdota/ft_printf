@@ -6,18 +6,21 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 12:21:50 by cbach             #+#    #+#             */
-/*   Updated: 2020/05/27 14:50:58 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 00:21:35 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 size_t		ft_strlen(const char *s)
 {
 	size_t i;
 
 	i = 0;
-	while (*s++)
+	while (*s != '\0')
+	{
 		i++;
+		s++;
+	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:25:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 13:28:29 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 00:47:56 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int ft_printf(const char *line, ...)
 
 	if (!line)
 		return (-1);
-	t_format	format;
-	va_start(discard_options(&format)->list, line);
-	status = handle((char *)line, &format);
-	va_end(format.list);
+	t_f	f;
+	va_start(discard_options(&f)->list, line);
+	status = handle((char *)line, &f);
+	va_end(f.list);
 	return (status);
 }

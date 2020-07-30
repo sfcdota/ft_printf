@@ -6,11 +6,11 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 13:48:30 by cbach             #+#    #+#             */
-/*   Updated: 2020/05/28 13:13:38 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 16:43:23 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 char	*ft_strchr(const char *s, int c)
 {

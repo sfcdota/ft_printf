@@ -6,11 +6,11 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 12:19:59 by cbach             #+#    #+#             */
-/*   Updated: 2020/05/26 19:51:26 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 16:43:14 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

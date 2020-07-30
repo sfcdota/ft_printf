@@ -6,31 +6,31 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 18:57:53 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 14:36:37 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 00:55:46 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		minus(char c, t_format *format)
+int		minus(char c, t_f *f)
 {
 	if (c == '-')
 	{
-		if (format->flag_minus == 1)
+		if (f->minus == 1)
 			return (-1);
-		format->flag_minus = 1;
+		f->minus = 1;
 		return (1);
 	}
 	return (0);
 }
 
-int		zero(char c, t_format *format)
+int		zero(char c, t_f *f)
 {
 	if (c == '0')
 	{
-		if (format->flag_zero == 1)
+		if (f->zero == 1)
 			return (-1);
-		format->flag_zero = 1;
+		f->zero = 1;
 		return (1);
 	}
 	return (0);
