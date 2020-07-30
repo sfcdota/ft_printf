@@ -6,12 +6,12 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:43:47 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 11:57:01 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 14:36:37 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
+#include "wchar.h"
 void	fill_c(int len)
 {
 	if (len)
@@ -25,13 +25,13 @@ int	print_c(t_format *format)
 		format->width = va_arg(format->list, int);
 	if (format->flag_minus)
 	{
-		ft_putchar_fd(format->length == 'l' ? va_arg(format->list, unsigned long int) : va_arg(format->list, unsigned int), 1);
-		print_spaces(format->width - 1);
+		ft_putchar_fd((char)va_arg(format->list, unsigned int), 1);
+		fill_c(format->width ? format->width : 0);
 	}
 	else
 	{
-		print_spaces(format->width - 1);
-		ft_putchar_fd(format->length == 'l' ? va_arg(format->list, unsigned long int) : va_arg(format->list, unsigned int), 1);
+		fill_c(format->width ? format->width : 0);
+		ft_putchar_fd((char)va_arg(format->list, unsigned int), 1);
 	}
 	return (format->width ? format->width : 1);
 }

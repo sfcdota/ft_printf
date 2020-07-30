@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:13 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 11:40:12 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 12:09:30 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ char	*ft_itoa_16(unsigned long long n, t_format *format)
 
 int	print_x(t_format *format)
 {
-
+	return (0);
 }

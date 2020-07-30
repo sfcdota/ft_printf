@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/30 12:04:20 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/30 14:35:59 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include "libft/libft.h"
-// a = ll
-// b = hh
-# define TYPES "cspdiuxXnfge"
-# define FLAGS "-+ 0#"
+
 typedef struct	s_format
 {
 	va_list		list;
@@ -62,4 +59,5 @@ int				handle_precision(char **line, t_format *format);
 int				handle_length(char **line, t_format *format);
 int				handle_type(char **line, t_format *format);
 int				print_arg(t_format *format);
+
 #endif
