@@ -6,13 +6,13 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 00:57:38 by cbach            ###   ########.fr       */
+/*   Updated: 2020/07/31 14:17:38 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-t_f	*discard_options(t_f *f)
+t_f			*discard_options(t_f *f)
 {
 	f->minus = 0;
 	f->plus = 0;
@@ -26,7 +26,7 @@ t_f	*discard_options(t_f *f)
 	return (f);
 }
 
-void	fill(int len, char filler)
+void		fill(int len, char filler)
 {
 	if (len > 0)
 		while (len--)
@@ -60,16 +60,9 @@ int			i16_len(unsigned long long int i)
 	return (len);
 }
 
-
-int			ui_len(unsigned long long int i)
+char		*next_field(char *s)
 {
-	int len;
-
-	len = 1;
-	while (i > 10)
-	{
-		i /= 10;
-		len++;
-	}
-	return (len);
+	while (ft_isdigit(*s))
+		s++;
+	return (s);
 }

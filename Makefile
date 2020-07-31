@@ -6,7 +6,7 @@
 #    By: cbach <cbach@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/23 23:22:49 by cbach             #+#    #+#              #
-#    Updated: 2020/07/30 16:39:59 by cbach            ###   ########.fr        #
+#    Updated: 2020/07/31 14:18:24 by cbach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,22 +15,15 @@ HEAD =	printf.h
 FLAGS = -Wall -Wextra -Werror
 
 SRC =						\
-print_c.c					\
-print_diu.c					\
-print_spxX.c				\
 flags.c						\
-handle.c					\
-utils.c						\
+handle_fields.c				\
+libft_utils.c				\
+libft_utils2.c				\
+print_cspxx.c				\
+print_diu.c					\
 printf.c					\
-ft_atoi.c					\
-ft_isdigit.c				\
-ft_memmove.c				\
-ft_putchar_fd.c				\
-ft_putnbr_fd.c				\
-ft_putstr_fd.c				\
-ft_strchr.c					\
-ft_strdup.c					\
-ft_strlen.c					\
+utils.c						\
+
 
 BONUS =						\
 
@@ -43,37 +36,30 @@ else
 OBJ_FILES = $(OBJ)
 endif
 
-.PHONY: all bonus clean fclean re so
+.PHONY: all bonus clean fclean re
 
 all: $(NAME)
-	rm -f .depend
+	@ rm -f .depend
 
 $(NAME): $(OBJ_FILES)
-	ar -rcs $(NAME) $?
+	@ ar -rcs $(NAME) $?
 
 bonus:
 	$(MAKE) BONUS_FILES=1 all
 
 .depend: $(SRC) $(BONUS)
-	rm -f .depend
-	gcc $(FLAGS) -MM $^ > .depend;
+	@ rm -f .depend
+	@ gcc $(FLAGS) -MM $^ > .depend;
 
 -include .depend
 
 %.o:
-	gcc $(FLAGS) -c $< -o $@
+	@ gcc $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS) .depend
+	@ rm -f $(OBJ) $(OBJ_BONUS) .depend
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(NAME_SO)
+	@ rm -f $(NAME)
 
 re: fclean all
-
-so: $(NAME_SO)
-
-$(NAME_SO):
-	gcc -c -fPIC *.c
-	gcc -shared -o libft.so *.o
