@@ -15,8 +15,10 @@
 #include <limits.h>
 int main()
 {
-	ft_printf("status = %d\n\n\n", ft_printf("%.5p", 0));
-	//printf("status = %d\n\n\n", printf("%.5p", (void *)0));
+
+
+	
+	//printf("\n\n\nstatus = %d\n\n\n", printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X", i, j, k, l, m, n, c, c, j, j, j));
 	//printf("status = %d\n\n\n", printf("or = %-5"));
 	//printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c\n", '"', '!', '"', '#', '$', '%', '&');
 	//unsigned long long int a = 2;

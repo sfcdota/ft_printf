@@ -6,12 +6,12 @@
 /*   By: cbach <cbach@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 23:52:40 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/02 01:18:53 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#         include "stdio.h"
+
 t_f			*discard_options(t_f *f)
 {
 	f->minus = 0;
