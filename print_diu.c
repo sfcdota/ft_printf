@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:23 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:17:22 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 14:43:40 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ void	neg_triplet_not_minus(long long int n, int len, char filler, t_f *f)
 {
 	if (filler == '0')
 	{
-		ft_putchar_fd('-', 1);
+		ft_putchar_fd('-', 1, f);
 		len--;
 		n = -n;
 		f->width--;
 	}
-	else if (f->prec > len)
+	else if (f->prec >= len)
 		f->width--;
-	fill(f->width - max(f->prec, len, 0), filler);
+	fill(f->width - max(f->prec, len, 0), filler, f);
 	if (filler == ' ')
 	{
-		ft_putchar_fd('-', 1);
+		ft_putchar_fd('-', 1, f);
 		len--;
 		n = -n;
 	}
 	if (f->prec > len)
-		fill(f->prec - len, '0');
-	if (f->prec != -2)
-		ft_putnbrll_fd(n, 1);
+		fill(f->prec - len, '0', f);
+	if (f->prec != -2 || n)
+		ft_putnbrll_fd(n, 1, f);
 }
 
 void	put_triplet_diu(long long int n, int len, char filler, t_f *f)
@@ -70,20 +70,20 @@ void	put_triplet_diu(long long int n, int len, char filler, t_f *f)
 	{
 		if (n < 0)
 		{
-			ft_putchar_fd('-', 1);
+			ft_putchar_fd('-', 1, f);
 			len--;
 			n = -n;
 			f->width--;
 		}
-		f->prec > len ? fill(f->prec - len, '0') : NULL;
-		f->prec != -2 ? ft_putnbrll_fd(n, 1) : NULL;
-		fill(f->width - max(f->prec, len, 0), filler);
+		f->prec > len ? fill(f->prec - len, '0', f) : NULL;
+		f->prec != -2 || n? ft_putnbrll_fd(n, 1, f) : NULL;
+		fill(f->width - max(f->prec, len, 0), filler, f);
 	}
 	else if (n >= 0)
 	{
-		fill(f->width - max(f->prec, len, 0), filler);
-		f->prec > len ? fill(f->prec - len, '0') : NULL;
-		f->prec != -2 ? ft_putnbrll_fd(n, 1) : NULL;
+		fill(f->width - max(f->prec, len, 0), filler, f);
+		f->prec > len ? fill(f->prec - len, '0', f) : NULL;
+		f->prec == -2 && !n ? NULL : ft_putnbrll_fd(n, 1, f);
 	}
 	else
 		neg_triplet_not_minus(n, len, filler, f);
@@ -92,12 +92,10 @@ void	put_triplet_diu(long long int n, int len, char filler, t_f *f)
 int		print_diu(t_f *f)
 {
 	long long int	out;
-	int				status;
 
 	out = f->type == 'u' ? (long long int)va_arg(f->list, unsigned int)
 	: (long long int)va_arg(f->list, int);
-	status = max(f->prec, f->width, i_len(out));
 	put_triplet_diu(
 	out, i_len(out), f->zero && !f->minus && !f->prec ? '0' : ' ', f);
-	return (status);
+	return (f->return_v);
 }

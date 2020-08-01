@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:52:31 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:16:34 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 12:45:36 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void		*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-void		ft_putchar_fd(char c, int fd)
+void		ft_putchar_fd(char c, int fd, t_f *f)
 {
 	write(fd, &c, 1);
+	f->return_v++;
 }

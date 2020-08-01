@@ -6,35 +6,38 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:43:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:16:49 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 15:56:03 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		handle_type(char **line, t_f *f)
+void	handle_type(char **line, t_f *f)
 {
 	if (!ft_strchr("cspdiuxX%%", **line))
-		return (-1);
-	f->type = **line == 'c' ? 'c' : f->type;
-	f->type = **line == 's' ? 's' : f->type;
-	f->type = **line == 'p' ? 'p' : f->type;
-	f->type = **line == 'd' ? 'd' : f->type;
-	f->type = **line == 'i' ? 'i' : f->type;
-	f->type = **line == 'u' ? 'u' : f->type;
-	f->type = **line == 'x' ? 'x' : f->type;
-	f->type = **line == 'X' ? 'X' : f->type;
-	f->type = **line == '%' ? '%' : f->type;
-	*line = *line + sizeof(char);
-	return (print_arg(f));
+		f->return_v = -1;
+	else
+	{
+		f->type = **line == 'c' ? 'c' : f->type;
+		f->type = **line == 's' ? 's' : f->type;
+		f->type = **line == 'p' ? 'p' : f->type;
+		f->type = **line == 'd' ? 'd' : f->type;
+		f->type = **line == 'i' ? 'i' : f->type;
+		f->type = **line == 'u' ? 'u' : f->type;
+		f->type = **line == 'x' ? 'x' : f->type;
+		f->type = **line == 'X' ? 'X' : f->type;
+		f->type = **line == '%' ? '%' : f->type;
+		*line = *line + sizeof(char);
+		print_arg(f);
+	}
 }
 
-int		handle_length(char **line, t_f *f)
+void	handle_length(char **line, t_f *f)
 {
-	return (handle_type(line, f));
+	handle_type(line, f);
 }
 
-int		handle_prec(char **line, t_f *f)
+void	handle_prec(char **line, t_f *f)
 {
 	if (**line == '.')
 	{
@@ -54,10 +57,10 @@ int		handle_prec(char **line, t_f *f)
 			*line = next_field(*line);
 		}
 	}
-	return (handle_length(line, f));
+	handle_length(line, f);
 }
 
-int		handle_width(char **line, t_f *f)
+void	handle_width(char **line, t_f *f)
 {
 	if (ft_isdigit(**line) && **line != '0')
 	{
@@ -77,16 +80,17 @@ int		handle_width(char **line, t_f *f)
 			*line = *line + sizeof(char);
 		}
 	}
-	return (handle_prec(line, f));
+	handle_prec(line , f);
 }
 
-int		handle_flags(char **line, t_f *f)
+void	handle_flags(char **line, t_f *f)
 {
 	while (ft_strchr("-0", **line))
 	{
-		if ((zero(**line, f) == -1) || (minus(**line, f) == -1))
-			return (-1);
+		zero(**line, f);
+		minus(**line, f);
 		*line = *line + sizeof(char);
 	}
-	return (handle_width(line, f));
+	if (f->return_v != -1)
+		handle_width(line, f);
 }

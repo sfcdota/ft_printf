@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:17:38 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 13:15:05 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_f			*discard_options(t_f *f)
 	return (f);
 }
 
-void		fill(int len, char filler)
+void		fill(int len, char filler, t_f *f)
 {
 	if (len > 0)
 		while (len--)
-			ft_putchar_fd(filler, 1);
+			ft_putchar_fd(filler, 1, f);
 }
 
 int			i_len(long long int i)

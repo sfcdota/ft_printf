@@ -6,33 +6,33 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:53:36 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:17:00 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 13:00:59 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_putnbrll_fd(long long int n, int fd)
+void	ft_putnbrll_fd(long long int n, int fd, t_f *f)
 {
 	if (n == -9223372036854775807LL - 1LL)
-		ft_putstr_fd_l("−9223372036854775808", fd, 20);
+		ft_putstr_fd_l("−9223372036854775808", fd, 20, f);
 	else
 	{
 		if (n < 0)
 		{
-			ft_putchar_fd('-', fd);
+			ft_putchar_fd('-', fd, f);
 			n *= -1;
 		}
 		if (n > 9)
-			ft_putnbrll_fd(n / 10, fd);
-		ft_putchar_fd(n % 10 + 48, fd);
+			ft_putnbrll_fd(n / 10, fd, f);
+		ft_putchar_fd(n % 10 + 48, fd, f);
 	}
 }
 
-void	ft_putstr_fd_l(char *s, int fd, size_t len)
+void	ft_putstr_fd_l(char *s, int fd, size_t len, t_f *f)
 {
 	while (s && *s && len--)
-		ft_putchar_fd(*s++, fd);
+		ft_putchar_fd(*s++, fd, f);
 }
 
 char	*ft_strchr(const char *s, int c)

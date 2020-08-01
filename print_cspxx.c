@@ -6,35 +6,34 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 13:44:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/07/31 14:17:09 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 15:49:38 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		print_c(t_f *f)
+void		print_c(t_f *f)
 {
 	char c;
 
 	if (f->type == '%')
-	{
-		ft_putchar_fd('%', 1);
-		return (1);
-	}
-	if (f->width == -1)
-		f->width = va_arg(f->list, int);
-	c = (char)va_arg(f->list, unsigned int);
-	if (f->minus)
-	{
-		ft_putchar_fd(c, 1);
-		fill(f->width ? f->width - 1 : 0, ' ');
-	}
+		ft_putchar_fd('%', 1, f);
 	else
 	{
-		fill(f->width ? f->width - 1 : 0, ' ');
-		ft_putchar_fd(c, 1);
+		if (f->width == -1)
+			f->width = va_arg(f->list, int);
+		c = (char)va_arg(f->list, unsigned int);
+		if (f->minus)
+		{
+			ft_putchar_fd(c, 1, f);
+			fill(f->width ? f->width - 1 : 0, ' ', f);
+		}
+		else
+		{
+			fill(f->width ? f->width - 1 : 0, ' ', f);
+			ft_putchar_fd(c, 1, f);
+		}
 	}
-	return (f->width ? f->width : 1);
 }
 
 char	*ft_itoa_16(unsigned long long n, t_f *f)
@@ -73,56 +72,57 @@ void	put_triplet_pxx(char *s, int len, char filler, t_f *f)
 	if (f->minus)
 	{
 		if (f->prec > len)
-			fill(f->prec - len, is_num ? '0' : ' ');
-		if (f->prec != -2)
-			ft_putstr_fd_l(s, 1, len);
-		if (f->width > f->prec + len)
-			fill(f->width - max(f->prec, len, 0), filler);
+			fill(f->prec - len, is_num ? '0' : ' ', f);
+		if (!(f->prec == -2 && *s == '0'))
+			ft_putstr_fd_l(s, 1, len, f);
+		else if (f->width)
+			ft_putchar_fd(' ', 1, f);
+		if (f->width > max(f->prec, 0, len))
+			fill(f->width - max(f->prec, len, 0), filler, f);
 	}
 	else
 	{
-		if (f->width > f->prec + len)
-			fill(f->width - max(f->prec, len, 0), filler);
+		if (f->width > max(f->prec, 0, len))
+			fill(f->width - max(f->prec, len, 0), filler, f);
 		if (f->prec > len)
-			fill(f->prec - len, is_num ? '0' : ' ');
-		if (f->prec != -2)
-			ft_putstr_fd_l(s, 1, len);
+			fill(f->prec - len, is_num ? '0' : ' ', f);
+		if (!(f->prec == -2 && *s == '0'))
+			ft_putstr_fd_l(s, 1, len, f);
+		else if (f->width)
+			ft_putchar_fd(' ', 1, f);
 	}
 }
 
-int		adjust_spxx(char *s, t_f *f, char filler)
+void		adjust_spxx(char *s, t_f *f, char filler)
 {
 	int		len;
 
 	len = ft_strlen(s);
 	f->zero = f->minus ? 0 : f->zero;
 	filler = f->zero ? '0' : ' ';
-	len = f->prec == -2 ? 0 : len;
 	if (f->type == 's')
 	{
+		len = f->prec == -2 ? 0 : len;
 		len = f->prec > 0 && f->prec < len ? f->prec : len;
-		f->minus ? ft_putstr_fd_l(s, 1, len)
-		: fill(max(0, f->width, len) - len, filler);
-		f->minus ? fill(max(0, f->width, len) - len, filler)
-		: ft_putstr_fd_l(s, 1, len);
-		return (max(0, len, f->width));
+		f->minus ? ft_putstr_fd_l(s, 1, len, f)
+		: fill(max(0, f->width, len) - len, filler, f);
+		f->minus ? fill(max(0, f->width, len) - len, filler, f)
+		: ft_putstr_fd_l(s, 1, len, f);
 	}
 	else
 	{
-		if (f->width > f->prec + len && f->zero && f->prec)
+		if (f->width > max(f->prec,0, len) && f->zero && f->prec)
 		{
 			f->zero = 0;
 			filler = ' ';
 		}
 		put_triplet_pxx(s, len, filler, f);
-		return (max(f->prec, f->width, len));
 	}
 }
 
-int		print_spxx(t_f *f)
+void	print_spxx(t_f *f)
 {
 	char	*str;
-	int		status;
 	int		need_free;
 	char	filler;
 
@@ -141,8 +141,7 @@ int		print_spxx(t_f *f)
 			str = ft_strdup("");
 	}
 	filler = ' ';
-	status = adjust_spxx(str, f, filler);
+	adjust_spxx(str, f, filler);
 	if (need_free)
 		free(str);
-	return (status);
 }
