@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 13:44:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 15:49:38 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:18:55 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_itoa_16(unsigned long long n, t_f *f)
 
 	if (n == 0 && f->type == 'p')
 		return (NULL);
-	len = i16_len(n);
+	len = max(i16_len(n), 0, f->prec);
 	base16 = f->type == 'X' ? "0123456789ABCDEF" : "0123456789abcdef";
 	f->hash = f->type == 'p' ? 1 : 0;
 	if (!(output = malloc(len + 1 + (f->hash ? 2 : 0))))
@@ -55,12 +55,11 @@ char	*ft_itoa_16(unsigned long long n, t_f *f)
 		output[0] = '0';
 	}
 	output[len + (f->hash ? 2 : 0)] = '\0';
-	while (n >= 16)
+	while (len)
 	{
 		output[--len + (f->hash ? 2 : 0)] = base16[n % 16];
 		n /= 16;
 	}
-	output[--len + (f->hash ? 2 : 0)] = base16[n % 16];
 	return (output);
 }
 
@@ -99,7 +98,7 @@ void		adjust_spxx(char *s, t_f *f, char filler)
 
 	len = ft_strlen(s);
 	f->zero = f->minus ? 0 : f->zero;
-	filler = f->zero ? '0' : ' ';
+	filler = f->zero && f->type != 's' ? '0' : ' ';
 	if (f->type == 's')
 	{
 		len = f->prec == -2 ? 0 : len;

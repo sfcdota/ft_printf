@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 13:15:05 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:22:01 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			i16_len(unsigned long long int i)
 
 char		*next_field(char *s)
 {
-	while (ft_isdigit(*s))
+	while (*s && ft_isdigit(*s))
 		s++;
 	return (s);
 }

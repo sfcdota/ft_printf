@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:43:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 15:56:03 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:27:57 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	handle_type(char **line, t_f *f)
 		f->type = **line == 'x' ? 'x' : f->type;
 		f->type = **line == 'X' ? 'X' : f->type;
 		f->type = **line == '%' ? '%' : f->type;
-		*line = *line + sizeof(char);
+		*line = **line ? *line + sizeof(char) : *line;
 		print_arg(f);
 	}
 }
