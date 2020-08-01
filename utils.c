@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbach <cbach@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 15:38:44 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 16:22:01 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 23:52:40 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
+#         include "stdio.h"
 t_f			*discard_options(t_f *f)
 {
 	f->minus = 0;
@@ -52,7 +52,7 @@ int			i16_len(unsigned long long int i)
 	int len;
 
 	len = 1;
-	while (i > 16)
+	while (i >= 16)
 	{
 		i /= 16;
 		len++;

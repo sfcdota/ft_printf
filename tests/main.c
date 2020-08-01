@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -12,9 +12,11 @@
 
 #include <stdio.h>
 #include "../printf.h"
+#include <limits.h>
 int main()
 {
-	ft_printf("status = %d\n\n\n", ft_printf("%-5%%-5c%-5d%-5i%-5u%-5s%-5p%-5x%-5X", 'q', 229, -228, 227, "privetiki",(void *)424, 424, 424));
+	ft_printf("status = %d\n\n\n", ft_printf("%.5p", 0));
+	//printf("status = %d\n\n\n", printf("%.5p", (void *)0));
 	//printf("status = %d\n\n\n", printf("or = %-5"));
 	//printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c\n", '"', '!', '"', '#', '$', '%', '&');
 	//unsigned long long int a = 2;

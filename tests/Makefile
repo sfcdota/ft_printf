@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cbach <cbach@student.42.fr>                +#+  +:+       +#+         #
+#    By: cbach <cbach@student.21-school.ru>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/10 13:44:31 by cbach             #+#    #+#              #
-#    Updated: 2020/07/31 12:28:12 by cbach            ###   ########.fr        #
+#    Updated: 2020/08/01 21:18:02 by cbach            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -g3 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 all: clear compile run clear
 

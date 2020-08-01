@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cbach <cbach@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 16:48:48 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 22:59:19 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_f
 }				t_f;
 
 t_f				*discard_options(t_f *f);
-char			*ft_itoa_16(unsigned long long n, t_f *f);
+char			*ft_itoa_16(unsigned long long n, t_f *f, char *base16);
 int				ft_printf(const char *line, ...);
 int				handle(char *line, t_f *f);
 int				minus(char c, t_f *f);
