@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:48:23 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 14:43:40 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:48:37 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	put_triplet_diu(long long int n, int len, char filler, t_f *f)
 			f->width--;
 		}
 		f->prec > len ? fill(f->prec - len, '0', f) : NULL;
-		f->prec != -2 || n? ft_putnbrll_fd(n, 1, f) : NULL;
+		f->prec != -2 || n ? ft_putnbrll_fd(n, 1, f) : NULL;
 		fill(f->width - max(f->prec, len, 0), filler, f);
 	}
 	else if (n >= 0)

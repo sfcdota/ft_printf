@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 12:43:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 16:27:57 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:48:02 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	handle_width(char **line, t_f *f)
 			*line = *line + sizeof(char);
 		}
 	}
-	handle_prec(line , f);
+	handle_prec(line, f);
 }
 
 void	handle_flags(char **line, t_f *f)

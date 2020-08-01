@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 15:26:15 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 14:34:25 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:48:48 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PRINTF_H
 # include <stdlib.h>
 # include <stdarg.h>
-#include <stdio.h>
+
 typedef struct	s_f
 {
 	va_list		list;

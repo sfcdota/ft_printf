@@ -6,7 +6,7 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 20:58:59 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 16:24:13 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:56:34 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../printf.h"
 int main()
 {
-	ft_printf("status = %d\n\n\n", ft_printf("%5"));
+	ft_printf("status = %d\n\n\n", ft_printf("%-5%%-5c%-5d%-5i%-5u%-5s%-5p%-5x%-5X", 'q', 229, -228, 227, "privetiki",(void *)424, 424, 424));
 	//printf("status = %d\n\n\n", printf("or = %-5"));
 	//printf("%-2c%-3c%-4c%-1c%-2c%-3c%-4c\n", '"', '!', '"', '#', '$', '%', '&');
 	//unsigned long long int a = 2;

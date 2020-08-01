@@ -6,13 +6,13 @@
 /*   By: cbach <cbach@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 13:44:37 by cbach             #+#    #+#             */
-/*   Updated: 2020/08/01 16:18:55 by cbach            ###   ########.fr       */
+/*   Updated: 2020/08/01 16:48:24 by cbach            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void		print_c(t_f *f)
+void	print_c(t_f *f)
 {
 	char c;
 
@@ -92,7 +92,7 @@ void	put_triplet_pxx(char *s, int len, char filler, t_f *f)
 	}
 }
 
-void		adjust_spxx(char *s, t_f *f, char filler)
+void	adjust_spxx(char *s, t_f *f, char filler)
 {
 	int		len;
 
@@ -110,7 +110,7 @@ void		adjust_spxx(char *s, t_f *f, char filler)
 	}
 	else
 	{
-		if (f->width > max(f->prec,0, len) && f->zero && f->prec)
+		if (f->width > max(f->prec, 0, len) && f->zero && f->prec)
 		{
 			f->zero = 0;
 			filler = ' ';
